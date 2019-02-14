@@ -1,0 +1,27 @@
+{
+  "name": "babel",
+  "version": "1.0.0",
+  "main": "main.js",
+  "dependencies": {
+    "asar": "^0.14.6"
+  },
+  "description": "simple mixing program for lazy people",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mixer"
+  ],
+  "author": "phibonachos",
+  "license": "ISC",
+  "devDependencies": {
+    "bootstrap": "^4.2.1",
+    "bootstrap-table": "^1.13.4",
+    "electron-debug": "^2.1.0",
+    "jquery": "^3.3.1",
+    "mousetrap": "^1.6.2",
+    "popper.js": "^1.14.7",
+    "toastr": "^2.1.4"
+  }
+}

@@ -1,0 +1,37 @@
+{
+    "/4183879_attico_vendita_milano" : "/attico-vendita-milano-4183879",
+    "/terreni/3214980_terreno-agricolo_vendita_paterno--ct" : "/terreno-agricolo-vendita-paterno--ct-3214980",
+    "/immobili-commerciali/3895277_negozio_vendita_santhia-" : "/negozio-vendita-santhia--3895277",
+    "/terreni/2040125_terreno-edificabile_vendita_serra-ricco-" : "/terreno-edificabile-vendita-serra-ricco--2040125",
+    "/2941192_casa-indipendente_vendita_re" : "/casa-indipendente-vendita-re-2941192",
+    "/3876662_appartamento_vendita_milano" : "/appartamento-vendita-milano-3876662",
+
+    "/agenzie-immobiliari/25313_lu" : "/sergiogarlandointermediazioni-agenzie-immobiliari-lu-25313",
+    "/agenzie-immobiliari/19250_serra-ricco-" : "/agenziaimmobiliareserraricco--agenzie-immobiliari-serra-ricco--19250",
+    "/agenzie-immobiliari/10303_busto-arsizio" : "/rotondoimmobiliare-agenzie-immobiliari-busto-arsizio-10303"
+
+    "/attico-vendita-positano-4183879" : "/attico-vendita-milano-4183879",
+    "/terreno-agricolo-vendita-positano-3214980" : "/terreno-agricolo-vendita-paterno--ct-3214980",
+    "/negozio-vendita-positano-3895277" : "/negozio-vendita-santhia--3895277",
+    "/terreno-edificabile-vendita-positano-2040125" : "/terreno-edificabile-vendita-serra-ricco--2040125",
+    "/casa-indipendente-vendita-positano-294234523451192" : "/casa-indipendente-vendita-re-2941192",
+    "/appartamento-vendita-positano-382345243576662" : "/appartamento-vendita-milano-3876662"
+
+    "/418387234523459_attico_vendita_milano" : "/vendita-attici/milano/",
+    "/terreni/32149345680_terreno-agricolo_vendita_paterno--ct" : "/vendita-terreni-agricoli/paterno--ct/",
+    "/immobili-commerciali/38952345277_negozio_vendita_santhia-" : "/vendita-negozi/santhia/",
+    "/terreni/20401234525_terreno-edificabile_vendita_serra-ricco-" : "/vendita-terreni-edificabili/serra-ricco--/",
+    "/29411234592_casa-indipendente_vendita_re" : "/vendita-case-indipendenti/re",
+    "/38766623452_appartamento_vendita_milano" : "/vendita-appartamenti/milano/",
+
+    "/rotondoimmobiliare-agenzie-immobiliari-busto-arsizio-1033463603" : "/rotondoimmobiliare-agenzie-immobiliari-busto-arsizio-10303",
+    "/agenziaimmobiliareserraricco--agenzie-immobiliari-serra-ricco--1922345235450" : "/agenziaimmobiliareserraricco--agenzie-immobiliari-serra-ricco--19250",
+    "/sergiogarlandointermediazioni-agenzie-immobiliari-lu-2531234523453" : "/sergiogarlandointermediazioni-agenzie-immobiliari-lu-25313",
+
+    "/agenzie-immobiliari/252345313_lu" : "/agenzie-immobiliari/lu/",
+    "/agenzie-immobiliari/192523450_serra-ricco-" : "/agenzie-immobiliari/serra-ricco/",
+    "/agenzie-immobiliari/103023453_busto-arsizio" : "/agenzie-immobiliari/busto-arsizio/",
+    "/agenzie-immobiliari/25313_positano" : "/sergiogarlandointermediazioni-agenzie-immobiliari-lu-25313",
+    "/agenzie-immobiliari/19250_positano" : "/agenziaimmobiliareserraricco--agenzie-immobiliari-serra-ricco--19250",
+    "/agenzie-immobiliari/10303_positano" : "/rotondoimmobiliare-agenzie-immobiliari-busto-arsizio-10303"
+}

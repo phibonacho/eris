@@ -1,0 +1,29 @@
+{
+    "Programs" : [
+        "Annuale",
+        "Annuale Invernale",
+        "Semestre",
+        "Trimestre",
+        "Bimestre",
+        "Estivo"
+    ],
+    "Local Centers" : [
+        "Aosta",
+        "Alba-Bra",
+        "Alessandria",
+        "Asti",
+        "Biella",
+        "Cuneo",
+        "Domodossola",
+        "Genova",
+        "Ivrea",
+        "Novara",
+        "Rivoli",
+        "Sanremo",
+        "Savona",
+        "Torino Nord",
+        "Torino Sud",
+        "Verbania",
+        "Vercelli"
+    ]
+}

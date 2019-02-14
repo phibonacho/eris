@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Babel</title>
+
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="bg-dark">
+    <div class="alert alert-info alert-dismissible fade show fixed-bottom" role="alert" id="myalert">
+        We are using node <script>document.write(process.versions.node)</script>,
+        Chrome <script>document.write(process.versions.chrome)</script>,
+        and Electron <script>document.write(process.versions.electron)</script>.
+
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="text-left mt-2 ml-3 mb-0">
+        <h4 class="text-white">Users Table</h4>
+    </div>
+    <div class="text-center mt-1 ml-3 mr-3 shadow-sm" style="overflow-y: auto; max-height: 500px; min-height: 150px">
+        <table id="usersTable" class="table table-striped table-dark">
+            <thead class="w-100">
+            <tr class="">
+                <th scope="col" class="">#</th>
+                <th scope="col">Name</th>
+                <th scope="col" class="">Surname</th>
+                <th scope="col">Sex</th>
+                <th scope="col">Local Center</th>
+                <th scope="col">Program</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+        </table>
+        <p id="tableInfo" class="text-white">No user in table...</p>
+    </div>
+
+    <div class="text-right m-3">
+        <button id="confbtn" type="button" class="btn btn-outline-success d-inline">
+            add conf
+        </button>
+        <button id="printbtn" type="button" class="btn btn-outline-warning d-inline">
+            print
+        </button>
+        <button id="removebtn" type="button" class="btn btn-outline-danger d-inline disabled" disabled>
+            Remove Rows
+        </button>
+        <button type="button" class="btn btn-outline-primary d-inline" data-toggle="modal" data-target="#addRowModal">
+            Add Row
+        </button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-labelledby="addRowModal" aria-hidden="true">
+        <div class="modal-lg modal-dialog" role="document">
+            <div class="modal-content bg-dark">
+                <div class="modal-body text-white">
+                    <form name="addRow">
+                        <div class="form-row mb-2">
+                            <div class="col-5">
+                                <label for="nameInput">Name</label>
+                                <input type="text" class="bg-dark border-primary form-control" name="name" id="nameInput" required>
+                            </div>
+                            <div class="col-5">
+                                <label for="surnameInput">Surname</label>
+                                <input type="text" class="bg-dark border-primary form-control" name="surname" id="surnameInput" required>
+                            </div>
+                            <div class="col-2">
+                                <label for="sexInput">Sex</label>
+                                <select class="form-control bg-dark border-primary text-white" name="sex" id="sexInput" required>
+                                    <option selected disabled class="text-muted" value="">...</option>
+                                    <option class="text-white" value="M">M</option>
+                                    <option class="text-white" value="F">F</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-5">
+                                <label for="localCenterInput">Local Center</label>
+                                <select class="custom-select bg-dark border-primary text-muted" name="sex" id="localCenterInput" required>
+                                    <option selected disabled value="">Choose...</option>
+                                </select>
+                            </div>
+                            <div class="col-5">
+                                <label for="programInput">Program</label>
+                                <select class="custom-select bg-dark border-primary text-muted custom-select" name="sex" id="programInput" required>
+                                    <option selected disabled value="">Choose...</option>
+                                </select>
+                            </div>
+                            <div class="col-2 text-center">
+                                <label for="addbtn" class="invisible">Add</label>
+                                <button id="addbtn" type="button" class="btn btn-primary d-block w-100 disabled" disabled>Add</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap & javascript dependencies -->
+    <!--<script>-->
+        <!--var $ = jQuery = require('jquery');-->
+        <!--window.Popper = window.$ = require('popper.js');-->
+        <!--window.Bootstrap = window = require('bootstrap');-->
+    <!--</script>-->
+    <!--script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script-->
+    <script>
+        var $ = jQuery = require("jquery");
+    </script>
+    <script src="./node_modules/jquery/dist/jquery.slim.min.js"></script>
+    <script src="./node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
