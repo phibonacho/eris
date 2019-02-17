@@ -1,11 +1,12 @@
 const { app, globalShortcut } = require('electron');
 const Mousetrap = require('mousetrap');
 const config = require('./data/basicInfo');
+const lang = require('./data/language');
 var remote = require('electron').remote;
 var fs = remote.require('fs');
 
 let toRemove = [];
-let rowNum = 0;
+let rowNum = 1;
 
 window.onload = ()=>{
     // fill modal list:
@@ -21,11 +22,17 @@ window.onload = ()=>{
         disableAdd(incompleteFields());
     });
 
+    $.each(lang, (key, value) =>{
+        $('#langInput').append(`<option class="text-white" value="${value}" title="${key}">${value}</option>`);
+    });
+
 
     $("#addbtn").click(function(){
         addRow();
         resetFields();
         disableAdd(true);
+
+        $("#tableInfo").toggleClass("d-none", $("#usersTable").find("tr")-1!==0);
     });
 
     $("#printbtn").click(function () {
@@ -55,13 +62,16 @@ window.onload = ()=>{
         });
 
         // re-indexing:
-        rowNum = 0;
+        rowNum = 1;
 
         $("#usersTable").find("tr").each(function(){
             let rowHeader = $(this).find("th");
             if(/^\d+$/.test(rowHeader.text()))
                 rowHeader.html(rowNum++);
         });
+
+        $("#tableInfo").toggleClass("d-none", $("#usersTable").find("tr")-1===0);
+
     });
 };
 
@@ -85,6 +95,7 @@ function addRow(){
                 <td>${$("#nameInput").val()}</td>
                 <td>${$("#surnameInput").val()}</td>
                 <td>${$("#sexInput").val()}</td>
+                <td>${$("#langInput").val()}</td>
                 <td>${$("#localCenterInput").val()}</td>
                 <td>${$("#programInput").val()}</td>
                 <td>
@@ -119,6 +130,7 @@ function print(){
                 row = row+$(this).html()+",";
             }
         });
+        console.log($('#usersTable').find("tr").length-1);
         console.log(row);
     });
 }

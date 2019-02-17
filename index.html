@@ -29,6 +29,7 @@
                 <th scope="col">Name</th>
                 <th scope="col" class="">Surname</th>
                 <th scope="col">Sex</th>
+                <th scope="col">Lan</th>
                 <th scope="col">Local Center</th>
                 <th scope="col">Program</th>
                 <th scope="col"></th>
@@ -60,11 +61,11 @@
                 <div class="modal-body text-white">
                     <form name="addRow">
                         <div class="form-row mb-2">
-                            <div class="col-5">
+                            <div class="col-4">
                                 <label for="nameInput">Name</label>
                                 <input type="text" class="bg-dark border-primary form-control" name="name" id="nameInput" required>
                             </div>
-                            <div class="col-5">
+                            <div class="col-4">
                                 <label for="surnameInput">Surname</label>
                                 <input type="text" class="bg-dark border-primary form-control" name="surname" id="surnameInput" required>
                             </div>
@@ -74,6 +75,13 @@
                                     <option selected disabled class="text-muted" value="">...</option>
                                     <option class="text-white" value="M">M</option>
                                     <option class="text-white" value="F">F</option>
+                                </select>
+                            </div>
+                            <div class="col-2">
+                                <label for="langInput">Lang</label>
+                                <select class="form-control bg-dark border-primary text-white" name="lan" id="langInput" required>
+                                    <option selected disabled class="text-muted" value="">...</option>
+
                                 </select>
                             </div>
                         </div>
