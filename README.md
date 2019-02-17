@@ -1,2 +1,2 @@
 # eris
-Simple application to create well-diverified groups
+Simple application to create well-diversified groups
