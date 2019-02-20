@@ -19,6 +19,7 @@
     "bootstrap": "^4.2.1",
     "bootstrap-table": "^1.13.4",
     "electron-debug": "^2.1.0",
+    "emoji.json": "^11.0.1",
     "jquery": "^3.3.1",
     "mousetrap": "^1.6.2",
     "popper.js": "^1.14.7",

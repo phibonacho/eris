@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body class="bg-dark">
+    <!-- Page Content -->
     <div class="alert alert-info alert-dismissible fade show fixed-bottom" role="alert" id="myalert">
         We are using node <script>document.write(process.versions.node)</script>,
         Chrome <script>document.write(process.versions.chrome)</script>,
@@ -18,21 +19,27 @@
         </button>
     </div>
 
-    <div class="text-left mt-2 ml-3 mb-0">
-        <h4 class="text-white">Users Table</h4>
+    <div class="text-center">
+        <img src="./img/logo.png" alt="IC logo" class="d-inline img-fluid my-3" style="max-height: 15%; max-width: 15%;">
     </div>
-    <div class="text-center mt-1 ml-3 mr-3 shadow-sm" style="overflow-y: auto; max-height: 500px; min-height: 150px">
+
+    <div class="text-center mt-1 ml-3 mr-3 shadow-sm " style="overflow-y: auto; max-height: 500px; min-height: 150px">
         <table id="usersTable" class="table table-striped table-dark">
             <thead class="w-100">
-            <tr class="">
+            <tr class="" id="headerRow">
                 <th scope="col" class="">#</th>
                 <th scope="col">Name</th>
                 <th scope="col" class="">Surname</th>
                 <th scope="col">Sex</th>
-                <th scope="col">Lan</th>
+                <th scope="col">Language</th>
                 <th scope="col">Local Center</th>
                 <th scope="col">Program</th>
-                <th scope="col"></th>
+                <th scope="col">
+                    <label class="switch">
+                        <input type="checkbox" >
+                        <span class="slider round select-all" id="select-all"></span>
+                    </label>
+                </th>
             </tr>
             </thead>
         </table>
@@ -46,8 +53,8 @@
         <button id="printbtn" type="button" class="btn btn-outline-warning d-inline">
             print
         </button>
-        <button id="removebtn" type="button" class="btn btn-outline-danger d-inline disabled" disabled>
-            Remove Rows
+        <button id="removebtn" type="button" class="btn btn-outline-danger d-inline disabled" disabled style="width: 88px !important;">
+            Remove
         </button>
         <button type="button" class="btn btn-outline-primary d-inline" data-toggle="modal" data-target="#addRowModal">
             Add Row
@@ -81,7 +88,6 @@
                                 <label for="langInput">Lang</label>
                                 <select class="form-control bg-dark border-primary text-white" name="lan" id="langInput" required>
                                     <option selected disabled class="text-muted" value="">...</option>
-
                                 </select>
                             </div>
                         </div>
@@ -108,13 +114,6 @@
             </div>
         </div>
     </div>
-    <!-- Bootstrap & javascript dependencies -->
-    <!--<script>-->
-        <!--var $ = jQuery = require('jquery');-->
-        <!--window.Popper = window.$ = require('popper.js');-->
-        <!--window.Bootstrap = window = require('bootstrap');-->
-    <!--</script>-->
-    <!--script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script-->
     <script>
         var $ = jQuery = require("jquery");
     </script>
