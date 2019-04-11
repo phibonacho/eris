@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "main": "main.js",
   "dependencies": {
-    "asar": "^0.14.6"
+    "asar": "^0.14.6",
+    "trianglify": "^2.0.0"
   },
   "description": "simple mixing program for lazy people",
   "scripts": {
     "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
   },
   "keywords": [
     "mixer"
@@ -16,13 +18,18 @@
   "author": "phibonachos",
   "license": "ISC",
   "devDependencies": {
+    "autoprefixer": "^9.5.1",
     "bootstrap": "^4.2.1",
     "bootstrap-table": "^1.13.4",
+    "canvas": "^2.3.1",
+    "clean-webpack-plugin": "^2.0.1",
     "electron-debug": "^2.1.0",
-    "emoji.json": "^11.0.1",
     "jquery": "^3.3.1",
+    "mini-css-extract-plugin": "^0.6.0",
     "mousetrap": "^1.6.2",
     "popper.js": "^1.14.7",
-    "toastr": "^2.1.4"
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "electron": "latest"
   }
 }
