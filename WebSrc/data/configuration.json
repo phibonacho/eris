@@ -1,0 +1,66 @@
+{
+  "formData" : {
+    "languages" : {
+      "English" : "en",
+      "English (United States)" : "en-US",
+      "English (Great Britain)" : "en-GB",
+      "French" : "fr",
+      "German" : "de",
+      "Polish" : "pl",
+      "Dutch" : "nl",
+      "Finnish" : "fi",
+      "Swedish" : "sv",
+      "Italian" : "it",
+      "Spanish (Spain)" : "es",
+      "Portuguese (Portugal)" : "pt",
+      "Russian" : "ru",
+      "Portuguese (Brazil)" : "pt-BR",
+      "Spanish (Mexico)" : "es-MX",
+      "Chinese (PRC)" : "zh-CN",
+      "Chinese (Taiwan)" : "zh-TW",
+      "Japanese" : "ja",
+      "Korean" : "ko"
+    },
+    "programs" : [
+      "Annuale",
+      "Annuale Invernale",
+      "Semestre",
+      "Trimestre",
+      "Bimestre",
+      "Estivo"
+    ],
+    "localCenters" : [
+      "Aosta",
+      "Alba-Bra",
+      "Alessandria",
+      "Asti",
+      "Biella",
+      "Cuneo",
+      "Domodossola",
+      "Genova",
+      "Ivrea",
+      "Novara",
+      "Rivoli",
+      "Sanremo",
+      "Savona",
+      "Torino Nord",
+      "Torino Sud",
+      "Verbania",
+      "Vercelli"
+    ]
+  },
+  "theme" : "bright",
+  "trianglifyDefaults" : {
+    "cell_size": 75,
+    "variance": 0.75,
+    "x_colors": "Blues",
+    "y_colors": "match_x",
+    "palette": "Trianglify.colorbrewer",
+    "color_space": "lab",
+    "color_function": false,
+    "stroke_width": 1.51,
+    "width": "window.innerWidth",
+    "height": "window.innerHeight",
+    "seed": null
+  }
+}
