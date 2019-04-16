@@ -2,49 +2,51 @@
 import '../scss/common.scss';
 
 /*js*/
+import './fontawesome'
 import 'bootstrap/js/dist/button';
 import 'bootstrap/js/dist/dropdown';
 import 'bootstrap/js/dist/alert';
 import 'bootstrap/js/dist/toast';
 import 'bootstrap/js/dist/modal';
+import './grouper';
 
 const Mousetrap = require('mousetrap');
 const config = require('../data/configuration');
 const fs = require('fs');
 import Trianglify from 'trianglify';
 
-console.log(config);
-
+let users = [];
 let toRemove = [];
 let rowNum = 1;
 let state = false;
+let body_defaults;
 
-// trianglify variables:
-/*var defaults = {
-    cell_size: 75,
-    variance: 0.75,
-    x_colors: 'Blues',
-    y_colors: 'match_x',
-    palette: Trianglify.colorbrewer,
-    color_space: 'lab',
-    color_function: false,
-    stroke_width: 1.51,
-    width: window.innerWidth,
-    height: window.innerHeight,
-    seed: null
-}*/;
-let defaults = config["trianglifyDefaults"];
+let customconfig;// override configuration with user's specifics:
+$.get(
+    'WebSrc/data/custom.configuration.json',
+    (data, status) => {
+        customconfig = JSON.parse(data);
+    }
+).then(()=>{
+    load_configuration(customconfig)
+    body_defaults = config["trianglifyDefaults"].body;
+    $(document).ready(() => {
+        console.log('loading trianglify with defaults: '+body_defaults);
 
-console.log(defaults);
+        // load background
+        body_defaults.height = window.innerHeight;
+        body_defaults.width = window.innerWidth;
+        let pattern = Trianglify(body_defaults);
+        document.body.appendChild(pattern.canvas());
+    });
 
-$(document).ready(() => {
-    defaults.height = window.innerHeight;
-    defaults.width = window.innerWidth;
-    let pattern = Trianglify(defaults);
-    document.body.appendChild(pattern.canvas());
 });
 
+
 window.onload = ()=>{
+    // override configuration with user's specifics:
+
+
     // fill modal list:
     let programs = config.formData.programs;
     let localCenter = config.formData.localCenters;
@@ -70,9 +72,9 @@ window.onload = ()=>{
     $("#select-all").on('click', function(){
         state = !state;
         console.log("select all is: "+(state?"":"not")+" checked...");
-        $('#usersTable').find('tr').not('#headerRow').each(function() {
+        $('#usersTable').find('tr').not($('#headerRow')).each(function() {
             console.log("setting: checked");
-            $(this).find('input').prop('checked', state)
+            $(this).find('input').prop('checked', state);
         });
     });
 
@@ -95,8 +97,8 @@ window.onload = ()=>{
 
     // modify remove button on row click:
     $("#usersTable").on("change", function () {
-        rn = highligthRow();
-        updateRemove(rn);
+        let rn = highligthRow();
+        updateActions(rn);
     });
 
     // removeButton
@@ -116,7 +118,8 @@ window.onload = ()=>{
         });
 
         $("#tableInfo").toggleClass("d-none", $("#usersTable").find("tr")-1===0);
-        updateRemove(0);
+        updateActions(0);
+        $("#select-all-btn").prop("checked", false)
     });
 
     // toggleButton
@@ -193,8 +196,6 @@ function print(){
 
 Mousetrap.bind('ctrl+n', () => { $("#addRowModal").modal('toggle'); });
 
-// Mousetrap.bind('ctrl+b', () => { toggleMode(); });
-
 function addProgram(obj){
     return addToConf("Program", obj);
 }
@@ -210,22 +211,44 @@ function addToConf(array, obj){
     });
 }
 
-function selectAll(){
-
-}
 
 function highligthRow(){
     $('#usersTable input').each(function() {
-        $(this).closest("tr").not("#headerRow").toggleClass("table-primary", $(this).is(':checked')).toggleClass("text-muted", $(this).is(':checked'));
+        $(this).closest("tr").not('#headerRow').toggleClass("table-primary", $(this).is(':checked')).toggleClass("text-muted", $(this).is(':checked'));
     });
 
     return $('#usersTable input:checked').length;
 }
 
-function updateRemove(rowNum){
-    $('#removebtn').toggleClass("disabled", rowNum===0).attr("disabled", rowNum===0).text("Remove"+(rowNum===0?"":"("+rowNum+")"));
+function updateActions(rowNum){
+    if(rowNum!==0){
+        $('#removebtn').toggleClass("disabled", false).toggleClass("text-danger", true).attr("disabled", false);
+        $('#printbtn').toggleClass("disabled", false).toggleClass("text-warning", true).attr("disabled", false);
+        $('#delete_counter').text(rowNum).fadeIn();
+
+    }
+    else{
+        $('#removebtn').toggleClass("disabled", true).toggleClass("text-danger", false).attr("disabled", true);
+        $('#printbtn').toggleClass("disabled", true).toggleClass("text-warning", false).attr("disabled", true);
+        $('#delete_counter').fadeOut();
+    }
 }
 
-function toggleMode(){
-    $(".bg-dark").toggleClass("bg-light").toggleClass("bg-dark");
+function load_configuration(user_config){
+    console.log('loading custom configuration');
+    console.log(user_config);
+    for (let macroconfig in user_config){
+        for (let conf in user_config[macroconfig]) {
+            if(typeof user_config[macroconfig][conf] === 'object')
+                for (let token in user_config[macroconfig][conf]) {
+                    console.log('overriding: '+macroconfig+' : '+conf+' : '+' : '+token);
+                    config[macroconfig][conf][token] = user_config[macroconfig][conf][token];
+                }
+            else
+                config[macroconfig][conf] = user_config[macroconfig][conf];
+        }
+    }
+
+    console.log('final configuration is:');
+    console.log(config);
 }

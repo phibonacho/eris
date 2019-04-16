@@ -29,7 +29,7 @@
       "Bimestre",
       "Estivo"
     ],
-    "localCenters" : [
+    "localCenter": [
       "Aosta",
       "Alba-Bra",
       "Alessandria",
@@ -51,16 +51,27 @@
   },
   "theme" : "bright",
   "trianglifyDefaults" : {
-    "cell_size": 75,
-    "variance": 0.75,
-    "x_colors": "Blues",
-    "y_colors": "match_x",
-    "palette": "Trianglify.colorbrewer",
-    "color_space": "lab",
-    "color_function": false,
-    "stroke_width": 1.51,
-    "width": "window.innerWidth",
-    "height": "window.innerHeight",
-    "seed": null
+    "body" : {
+      "cell_size": 75,
+      "variance": 0.75,
+      "x_colors": "Blues",
+      "y_colors": "match_x",
+      "palette": "Trianglify.colorbrewer",
+      "color_space": "lab",
+      "color_function": false,
+      "stroke_width": 1.51,
+      "seed": null
+    },
+    "modals" : {
+      "cell_size": 75,
+      "variance": 0.75,
+      "x_colors": "Blues",
+      "y_colors": "match_x",
+      "palette": "Trianglify.colorbrewer",
+      "color_space": "lab",
+      "color_function": false,
+      "stroke_width": 1.51,
+      "seed": null
+    }
   }
 }

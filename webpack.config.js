@@ -7,6 +7,7 @@ module.exports = {
     context: path.resolve(__dirname, 'WebSrc'),
     entry : {
         index : './js/index.js',
+        grouper : './js/grouper.js'
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -15,6 +16,17 @@ module.exports = {
     mode: "development",
     module: {
         rules: [
+            {
+                test: /\.js$/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        cacheDirectory: true,
+                        presets: [["@babel/preset-env", {modules: false}]],
+                        plugins: ["@babel/plugin-syntax-dynamic-import"],
+                    }
+                }
+            },
             // compilazione dei scss, immagini e font:
             {
                 test: /\.scss$/,
@@ -96,5 +108,12 @@ module.exports = {
     stats : true,
     node: {
         fs: "empty"
-    }
+    }/*,
+    watch : true,
+    watchOptions: {
+        ignored: [
+            'node_modules',
+            'WebSrc/scss/!*'
+        ]
+    }*/
 };

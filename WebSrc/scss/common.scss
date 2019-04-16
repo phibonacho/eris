@@ -1,6 +1,10 @@
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/bootstrap-grid";
+
+$main: $primary;
 
 @each $color, $value in $theme-colors{
   @for $i from 1 through 9 {
@@ -10,24 +14,28 @@
   }
 }
 
-::-webkit-scrollbar              { /* 1 */ }
-::-webkit-scrollbar-button       { /* 2 */ }
-::-webkit-scrollbar-track        { /* 3 */ }
-::-webkit-scrollbar-track-piece  { /* 4 */ }
-::-webkit-scrollbar-thumb        {
-  border-radius: 1rem;
-}
-::-webkit-scrollbar-corner       { /* 6 */ }
-::-webkit-resizer                { /* 7 */ }
-::-webkit-scrollbar {
+::-webkit-scrollbar{
   background-color: #343a40;
-  width: .8em
+  width: .8em;
+  &-button       { /* 2 */ }
+  &-track        { /* 3 */ }
+  &-piece  { /* 4 */ }
+  &-thumb        {
+    border-radius: 1rem;
+  }
+  &-corner       { /* 6 */ }
+  &-resizer                { /* 7 */ }
+
+
+
+
+  &-thumb:window-inactive,
+  &-thumb {
+    background:  $main;
+  }
 }
 
-::-webkit-scrollbar-thumb:window-inactive,
-::-webkit-scrollbar-thumb {
-  background:  #007bff;
-}
+
 
 body {
   overflow-x: hidden;
@@ -42,13 +50,15 @@ body {
   transition: margin .25s ease-out;
 }
 
-#sidebar-wrapper .sidebar-heading {
-  padding: 0.875rem 1.25rem;
-  font-size: 1.2rem;
-}
+#sidebar-wrapper {
+  .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+  }
 
-#sidebar-wrapper .list-group {
-  width: 15rem;
+  .list-group {
+    width: 15rem;
+  }
 }
 
 #page-content-wrapper {
@@ -58,21 +68,20 @@ body {
 #wrapper.toggled #sidebar-wrapper {
   margin-left: 0;
 }
+  @media (min-width: 768px) {
+    #sidebar-wrapper {
+      margin-left: 0;
+    }
 
-@media (min-width: 768px) {
-  #sidebar-wrapper {
-    margin-left: 0;
-  }
+    #page-content-wrapper {
+      min-width: 0;
+      width: 100%;
+    }
 
-  #page-content-wrapper {
-    min-width: 0;
-    width: 100%;
+    #wrapper.toggled #sidebar-wrapper {
+      margin-left: -15rem;
+    }
   }
-
-  #wrapper.toggled #sidebar-wrapper {
-    margin-left: -15rem;
-  }
-}
 
 /* The switch - the box around the slider */
 .switch {
@@ -80,13 +89,14 @@ body {
   display: inline-block;
   width: 33px;
   height: 20px;
-}
+
 
 /* Hide default HTML checkbox */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
+ input {
+   opacity: 0;
+   width: 0;
+   height: 0;
+ }
 }
 
 /* The slider */
@@ -97,61 +107,54 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: /*#262b2f*/ rgba(14,16,18, 0.2);
-  -webkit-transition: .4s;
+  background-color: rgba($dark, 0.2);
   transition: .4s;
+  &:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  /* Rounded sliders */
+  &.round {
+    border-radius: 34px;
+    &:before {
+      border-radius: 50%;
+    }
+  }
+
 }
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 14px;
-  width: 14px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+// sta rumenta è da rivedere...
+input {
+  &:checked + .slider {
+    background-color: /*#2196F3*/ rgba($main,0.9);
+  }
+  &:focus + .slider {
+    box-shadow: 0 0 1px /*#2196F3*/ rgba($main,0.9);
+  }
+  &:checked + .slider:before {
+    transform: translateX(14px);
+  }
+  &:checked + .select-all{
+    background-color: $main !important;
+  }
+  &:focus + .select-all {
+    box-shadow: 0 0 1px $main;
+  }
+  &:checked + .filters {
+    background-color: $main !important;
+  }
+  &:focus + .filters {
+    box-shadow: 0 0 1px $main;
+  }
 }
 
-input:checked + .slider {
-  background-color: /*#2196F3*/ rgba(23,162,184,0.2);
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px /*#2196F3*/ rgba(23,162,184,0.2);
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(14px);
-  -ms-transform: translateX(14px);
-  transform: translateX(14px);
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-
-input:checked + .select-all{
-  background-color: var(--cyan) !important;
-}
-
-input:focus + .select-all {
-  box-shadow: 0 0 1px var(--cyan);
-}
-
-input:checked + .filters {
-  background-color: var(--teal) !important;
-}
-
-input:focus + .filters {
-  box-shadow: 0 0 1px var(--teal);
-}
 
 /* MODAL FADE LEFT RIGHT BOTTOM */
 .modal.fade:not(.in).left .modal-dialog {
@@ -197,6 +200,25 @@ canvas {
 }
 
 #headerRow {
-  background-color: rgba(23,162,184,0.2);
+  background-color: rgba($main,0.2);
+}
 
+.text-custom {
+  color: white;
+  transition: color 0.5s ease;
+}
+
+.add:hover{
+  color: $primary;
+  transition: color 0.5s ease;
+}
+
+.remove:hover{
+  color: $danger;
+  transition: color 0.5s ease;
+}
+
+.print:hover{
+  color: $warning;
+  transition: color 0.5s ease;
 }
