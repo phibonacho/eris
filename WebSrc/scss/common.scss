@@ -14,6 +14,8 @@ $main: $primary;
   }
 }
 
+
+
 ::-webkit-scrollbar{
   background-color: #343a40;
   width: .8em;
@@ -25,10 +27,6 @@ $main: $primary;
   }
   &-corner       { /* 6 */ }
   &-resizer                { /* 7 */ }
-
-
-
-
   &-thumb:window-inactive,
   &-thumb {
     background:  $main;
@@ -39,6 +37,7 @@ $main: $primary;
 
 body {
   overflow-x: hidden;
+  overflow-y: auto;
 }
 
 #sidebar-wrapper {
@@ -107,7 +106,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba($dark, 0.2);
+  background-color: rgba($light, 0.2);
   transition: .4s;
   &:before {
     position: absolute;
@@ -199,7 +198,7 @@ canvas {
   z-index: -999999;
 }
 
-#headerRow {
+.header-row {
   background-color: rgba($main,0.2);
 }
 
@@ -221,4 +220,14 @@ canvas {
 .print:hover{
   color: $warning;
   transition: color 0.5s ease;
+}
+
+.load:hover{
+  color: $success;
+  transition: color 0.5s ease;
+}
+
+.top-corners-flat{
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
 }

@@ -3,14 +3,23 @@ import {
     faTrash,
     faUserPlus,
     faFileCsv,
-    faCompactDisc
+    faCompactDisc,
+    faCircleNotch,
+    faExclamationTriangle,
+    faPrint,
+    faBan
+
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
     faTrash,
     faUserPlus,
     faFileCsv,
-    faCompactDisc
+    faCompactDisc,
+    faCircleNotch,
+    faExclamationTriangle,
+    faPrint,
+    faBan
 );
 
 dom.watch();

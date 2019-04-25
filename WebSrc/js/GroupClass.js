@@ -21,6 +21,13 @@ export default class GroupClass {
         }
     }
 
+    clone(otherGroup){
+        // copy items
+        for(let i = 0; i< otherGroup.items.length; i++){
+            this.add(otherGroup.items[i]);
+        }
+    }
+
     // higherStats() {
     //     let max = 0, tmp;
     //     for(let stat in this.stats){
@@ -32,22 +39,7 @@ export default class GroupClass {
         this.items.push(person);
 
         // aggiorno le statistiche esistenti
-        for (let statnames in this.stats){
-            if(typeof this.stats[statnames] === 'object'){
-                for(let prop in this.stats[statnames]){
-                    this.updatePercentage(statnames, prop);
-                }
-            }
-            else{
-                // caso m:
-                let tmp = 0;
-                for(let i = 0; i<this.items.length; i++){
-                    if(this.items[i].sex === 'M') tmp++;
-                }
-                this.stats.m = tmp/this.items.length;
-            }
-
-        }
+        this.updateStats();
 
         // aggiungo, se non esistente, la statistica della lingua
         if(!this.stats.language.hasOwnProperty(person.language)){
@@ -59,6 +51,21 @@ export default class GroupClass {
         if(!this.stats.localCenter.hasOwnProperty(person.localCenter)){
             this.stats.localCenter[person.localCenter] = 1/this.items.length;
         }
+    }
+
+    remove(person){
+        for(let i in items){
+            if(items[i].equals(person)) this.items.splice(i, 1);
+        }
+    }
+
+    remove_at(i){
+        return this.items.splice(i, 1)[0];
+    }
+
+    massive_add(persons){
+        for(let i = 0; i<persons.length; i++)
+            this.add(persons[i]);
     }
 
     mostSpokenLanguage(){
@@ -113,15 +120,96 @@ export default class GroupClass {
         this.stats[statname][flag] = tmp/this.items.length;
     }
 
+    top(){
+        let result = this.items.shift();
+        this.updateStats();
+        return result;
+    }
+
     personSpeaking(lang){
         let tmp = [];
-        for(let j = 0; j<lang.length; j++)
-            for(let i = 0; i<this.items.length; i++){
-                if(this.items[i].language === lang[j]){
-                    tmp.push(this.items[i])
+        for(let j = 0; j<lang.length; j++) {
+            for (let i = 0; i < this.items.length; i++) {
+                // console.log('checking: '+this.items[i]);
+                if (this.items[i].language === lang[j]) {
+                    // in questo modo tutte le entrate che rientrano nel filtro vengono eliminate, se volessi tenerle basterebbe pushare senza fare splice... ma a quel punto non so se funzionerebbe(?)
+                    tmp.push(this.items[i]);
+                    this.items.splice(i--, 1);
+                    this.updateStats();
                 }
             }
+        }
         return tmp;
     }
 
+    personAttending(center){
+        let tmp = [];
+        for(let j = 0; j<center.length; j++) {
+            for (let i = 0; i < this.items.length; i++) {
+                // console.log('checking: '+this.items[i]);
+                if (this.items[i].localCenter === center[j]) {
+                    // console.log(`adding ${this.items[i].name} ${this.items[i].surname} to aggregation`);
+                    tmp.push(this.items[i]);
+                    this.items.splice(i--, 1);
+                    this.updateStats();
+                }
+            }
+        }
+        return tmp;
+    }
+
+    updateStats(){
+        for (let statnames in this.stats){
+            if(typeof this.stats[statnames] === 'object'){
+                for(let prop in this.stats[statnames]){
+                    this.updatePercentage(statnames, prop);
+                }
+            }
+            else{
+                // caso m:
+                let tmp = 0;
+                for(let i = 0; i<this.items.length; i++){
+                    if(this.items[i].sex === 'M') tmp++;
+                }
+                this.stats.m = tmp/this.items.length;
+            }
+
+        }
+    }
+
+    toString(){
+        let res = "";
+        for(let i = 0; i<this.items.length; i++) res += this.items[i].toString();
+        for(let i in this.stats.language) res += `\n\t${i}: ${this.stats.language[i]}`;
+        for(let i in this.stats.localCenter) res += `\n\t${i}: ${this.stats.localCenter[i]}`;
+        return res;
+    }
+
+    groupStats(index){
+        // <button type="button" class="btn btn-lg btn-danger" >Click to toggle popover</button>
+        let components = "", langs = "", lc ="";
+        for(let i = 0; i < this.items.length; i++)
+            components+=`${this.items[i].name} ${this.items[i].surname}${i===this.items.length-1?"":", "}`;
+        let langSet = Object.keys(this.stats.language);
+        for(let i = 0; i < langSet.length; i++)
+            langs+=`${langSet[i]}${i===langSet.length-1?"":", "}`;
+        let lcSet = Object.keys(this.stats.localCenter);
+        for(let i = 0; i < lcSet.length; i++)
+            lc+=`${lcSet[i]}${i===lcSet.length-1?"":", "}`;
+        return `<tr>
+                    <td>${index+1}</td>
+                    <td data-toggle="popover"  data-placement="right" data-trigger="hover" data-content="${components}" title="Componenti" data-html="true" class="">${this.items.length}</td>
+                    <td>${this.stats.m.toFixed(2)}</td>
+                    <td data-toggle="popover"  data-placement="right" data-trigger="hover" data-content="${langs}" title="Lingue" data-html="true" class="">${langSet.length}</td>
+                    <td data-toggle="popover"  data-placement="right" data-trigger="hover" data-content="${lc}" title="Centri Locali" data-html="true" class="">${lcSet.length}</td>
+                    <td>
+                        <button class="bg-transparent border-0 text-custom print mx-3 print-button" data-target="${index}">
+                            <span class="fa-stack">
+                                <i class="fas fa-print fa-stack-1x"></i>
+                                <i class="fas fa-ban fa-stack-2x" style="color:Tomato"></i>
+                            </span>
+                        </button>
+                    </td>
+                </tr>`;
+    }
 }

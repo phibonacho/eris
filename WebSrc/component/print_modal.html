@@ -1,0 +1,23 @@
+<div class="modal fade" id="createFile" tabindex="-1" role="dialog" aria-labelledby="printOnFileModal" aria-hidden="true">
+    <div class="modal-lg modal-dialog" role="document">
+        <div class="modal-content bg-dark">
+            <div class="modal-header bg-warning py-1 border-bottom-0">
+                Save table to file (.csv)
+            </div>
+            <div class="modal-body text-white">
+                <form name="filesave">
+                    <div class="form-row mb-2">
+                        <label for="fileName" class="text-warning mt-1">File name</label>
+                        <div class="input-group">
+                            <input type="text" name="fileName" id="fileName" class="form-control bg-dark border-warning text-warning" required>
+                            <div class="input-group-append">
+                                <button id="printTable" class="btn btn-warning">Print</button>
+                            </div>
+                        </div>
+                        <small class="text-warning">File will be saved in <b>eris</b> directory under /myFiles/</small>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

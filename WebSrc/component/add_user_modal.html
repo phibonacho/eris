@@ -1,0 +1,55 @@
+<div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-labelledby="addRowModal" aria-hidden="true">
+    <div class="modal-lg modal-dialog" role="document">
+        <div class="modal-content bg-transparent">
+            <div class="modal-header bg-dark-transparency-9 py-1 border-bottom-0 text-white">
+                Add user to table
+            </div>
+            <div class="modal-body text-white bg-dark-transparency-8">
+                <form name="addRow">
+                    <div class="form-row mb-2">
+                        <div class="col-3">
+                            <label for="nameInput">Name</label>
+                            <input type="text" class="border-dark form-control bg-transparent text-white" name="name" id="nameInput" required>
+                        </div>
+                        <div class="col-4">
+                            <label for="surnameInput">Surname</label>
+                            <input type="text" class="border-dark bg-transparent text-white form-control" name="surname" id="surnameInput" required>
+                        </div>
+                        <div class="col-2">
+                            <label for="sexInput">Sex</label>
+                            <select class="form-control border-dark bg-transparent text-white" name="sex" id="sexInput" required>
+                                <option selected disabled class="text-muted" value="">...</option>
+                                <option class="" value="M">M</option>
+                                <option class="" value="F">F</option>
+                            </select>
+                        </div>
+                        <div class="col-3">
+                            <label for="langInput">Lang</label>
+                            <select class="form-control border-dark bg-transparent text-white" name="lan" id="langInput" required>
+                                <option selected disabled class="text-muted" value="">...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-5">
+                            <label for="localCenterInput">Local Center</label>
+                            <select class="custom-select border-dark bg-transparent text-white" name="sex" id="localCenterInput" required>
+                                <option selected disabled value="">Choose...</option>
+                            </select>
+                        </div>
+                        <div class="col-5">
+                            <label for="programInput">Program</label>
+                            <select class="border-dark bg-transparent text-white custom-select" name="sex" id="programInput" required>
+                                <option selected disabled value="">Choose...</option>
+                            </select>
+                        </div>
+                        <div class="col-2 text-center">
+                            <label for="addbtn" class="invisible">Add</label>
+                            <button id="addbtn" type="button" class="btn btn-dark d-block w-100 disabled" disabled>Add</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
