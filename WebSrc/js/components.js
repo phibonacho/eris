@@ -12,6 +12,7 @@ import {
 const Mousetrap = require('mousetrap');
 const config = require('../data/configuration');
 import Trianglify from 'trianglify';
+import toastTemplate from '../component/notification_component.html'
 import {groups, to_mix} from "./grouper";
 
 let body_defaults = config["trianglifyDefaults"].body;
@@ -120,7 +121,7 @@ window.onload = ()=>{
                 reject();
         }).then(()=>{$('#loading-spinner').toggleClass('d-none', true);},
             () => {
-                $.get('WebSrc/component/notification.html').done((data)=>{
+                $.get('WebSrc/component/notification_component.html').done((data)=>{
                     let toaster = $(data);
                     toaster.find('.fas').addClass('fa-exclamation-triangle').addClass('text-warning');
                     toaster.find('.toast-body').text('You don\'t have enough persons to group');
@@ -161,9 +162,10 @@ window.onload = ()=>{
                     }
             },
             () => {
-                $.get('WebSrc/component/notification.html').done((data)=>{
-                    loadToast(data);
-                });
+                // $.get('WebSrc/component/notification_component.html').done((data)=>{
+                //     loadToast(data);
+                // });
+                loadToast(toastTemplate);
             }).then(()=>{},
             (err)=>{
                 console.log(err.message);
@@ -178,14 +180,11 @@ window.onload = ()=>{
         $('[data-toggle="tooltip"]').tooltip();
         $('[data-toggle="popover"]').popover();
         $('[data-toggle="modal"], [data-target="#createFile"]').on('click', function (e) {
-            console.log('modifying target');
             let button = $(this);
-            console.log('checking target of: '+button.attr('id'));
             let targetTable = button.data('table');
-            console.log('target table is: '+targetTable)
             let modal = $(button.data('target'));
+
             modal.data('table', targetTable);
-            console.log('modified');
         });
     });
 };

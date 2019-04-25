@@ -5,6 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MakeDirWebpackPlugin = require('make-dir-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyPkgJsonPlugin = require("copy-pkg-json-webpack-plugin");
 
 module.exports = {
     context: path.resolve(__dirname, 'WebSrc'),
@@ -31,7 +32,7 @@ module.exports = {
             },
             // compilazione dei scss, immagini e font:
             {
-                test: /_modal\.(html)$/,
+                test: /_component\.(html)$/,
                 use: {
                     loader: 'html-loader',
                     options: {
@@ -131,7 +132,10 @@ module.exports = {
                 from: 'static',
                 to: '',
             }
-        ])
+        ]),
+        new CopyPkgJsonPlugin({
+            remove: ['devDependencies'],
+        })
     ],
     stats : true,
     node : {
