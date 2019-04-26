@@ -3,15 +3,25 @@
   "version": "1.0.0",
   "main": "main.js",
   "dependencies": {
-    "asar": "^0.14.6",
-    "trianglify": "^2.0.0",
-    "yarn": "^1.15.2"
+
+    "trianglify": "^2.0.0"
   },
   "description": "simple mixing program for lazy people",
   "scripts": {
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack",
+    "pack" : "mkdir dist/resources && mv dist/app dist/resources",
+    "pack-asar" : "asar pack dist/app dist/resources/app.asar",
+    "prepare" : "npm run build && npm run pack-asar && npm run fake-file && cd dist && mkdir binaries && cp prebuilt-binaries/* binaries ",
+    "dist" : "npm run clean && npm run prepare && npm run dist-linux && npm run dist-win",
+    "dist-asar" : "npm run clean && npm run prepare && npm run dist-linux-asar && npm run dist-win-asar",
+    "dist-linux" : "cd dist && zip -ur binaries/electron-v4.1.5-linux-x64.zip resources/app myFiles",
+    "dist-linux-asar" : "cd dist && zip -ur binaries/electron-v4.1.5-linux-x64.zip resources/app.asar myFiles",
+    "dist-win" : "cd dist && zip -ur binaries/electron-v4.1.5-win32-x64.zip resources/app myFiles",
+    "dist-win-asar" : "cd dist && zip -ur binaries/electron-v4.1.5-win32-x64.zip resources/app.asar myFiles",
+    "fake-file" : "cd dist && mkdir myFiles && touch myFiles/empty.csv",
+    "clean" : "cd dist && rm -rf app electron binaries myFiles resources"
   },
   "keywords": [
     "mixer"
@@ -19,6 +29,8 @@
   "author": "phibonachos",
   "license": "ISC",
   "devDependencies": {
+
+    "asar": "^0.14.6",
     "@babel/core": "^7.0.0",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/plugin-transform-regenerator": "^7.0.0",
@@ -59,6 +71,7 @@
     "sass-loader": "^7.1.0",
     "system": "^2.0.1",
     "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0"
+    "webpack-cli": "^3.3.0",
+    "yarn": "^1.15.2"
   }
 }

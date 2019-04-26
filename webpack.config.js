@@ -13,7 +13,7 @@ module.exports = {
         index : './js/index.js',
     },
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'dist/app'),
         filename: "js/[name].js"
     },
     mode: "development",
@@ -122,11 +122,11 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename : 'css/[name].css'
         }),
-        new MakeDirWebpackPlugin({
+        /*new MakeDirWebpackPlugin({
             dirs: [
-                { path: './dist/myFiles' },
+                { path: './dist/app/myFiles' },
             ]
-        }),
+        }),*/
         new CopyWebpackPlugin([
             {
                 from: 'static',

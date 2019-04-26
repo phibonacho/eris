@@ -8,7 +8,7 @@ const app = electron.app;
 const globalShortcut = electron.globalShortcut;
 
 // Adds debug features like hotkeys for triggering dev tools and reload
-require('electron-debug/index')();
+// require('electron-debug/index')();
 /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
 
 // Prevent window being garbage collected
